@@ -1,0 +1,7 @@
+/Users/cliodhna/CSC3065/spider-crawler/src/main/java/com/example/spider/crawler/config/DatabaseConfig.java
+/Users/cliodhna/CSC3065/spider-crawler/src/main/java/com/example/spider/crawler/dao/CrawlerDao.java
+/Users/cliodhna/CSC3065/spider-crawler/src/main/java/com/example/spider/crawler/App.java
+/Users/cliodhna/CSC3065/spider-crawler/src/main/java/com/example/spider/crawler/config/DatabaseProperties.java
+/Users/cliodhna/CSC3065/spider-crawler/src/main/java/com/example/spider/crawler/domain/Webpage.java
+/Users/cliodhna/CSC3065/spider-crawler/src/main/java/com/example/spider/crawler/service/Extractor.java
+/Users/cliodhna/CSC3065/spider-crawler/src/main/java/com/example/spider/crawler/controller/Controller.java

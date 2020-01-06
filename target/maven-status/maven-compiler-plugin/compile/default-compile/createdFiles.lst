@@ -1,0 +1,8 @@
+com/example/spider/crawler/service/Extractor.class
+com/example/spider/crawler/domain/Webpage.class
+com/example/spider/crawler/config/DatabaseConfig.class
+com/example/spider/crawler/dao/CrawlerDao.class
+com/example/spider/crawler/controller/Controller.class
+com/example/spider/crawler/App.class
+com/example/spider/crawler/config/DatabaseProperties.class
+com/example/spider/crawler/domain/Webpage$WebpageBuilder.class
