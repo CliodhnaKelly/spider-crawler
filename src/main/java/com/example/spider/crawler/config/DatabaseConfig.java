@@ -23,6 +23,7 @@ public class DatabaseConfig {
       .dataSource(dataSource)
       .schemas("spiderdb")
       .locations("classpath:db/migration")
+      .baselineOnMigrate(true)
       .load();
 
     flyway.migrate();
