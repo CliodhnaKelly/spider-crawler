@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MicrometerConfig {
 
-  @Bean
-  public TimedAspect timedAspect(MeterRegistry meterRegistry) {
-    return new TimedAspect(meterRegistry);
-  }
+//  @Bean
+//  public TimedAspect timedAspect(MeterRegistry meterRegistry) {
+//    return new TimedAspect(meterRegistry);
+//  }
 //
 //  @Bean
 //  public Counter numberOfSuccessfulSearches(MeterRegistry meterRegistry) {

@@ -1,4 +1,5 @@
 com/example/spider/crawler/service/Extractor.class
+com/example/spider/crawler/config/MicrometerConfig.class
 com/example/spider/crawler/domain/Webpage.class
 com/example/spider/crawler/config/DatabaseConfig.class
 com/example/spider/crawler/dao/CrawlerDao.class
