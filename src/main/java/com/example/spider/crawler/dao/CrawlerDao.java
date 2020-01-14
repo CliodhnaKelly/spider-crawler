@@ -1,5 +1,6 @@
 package com.example.spider.crawler.dao;
 
+import io.micrometer.core.instrument.Counter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,8 @@ public class CrawlerDao {
   @NonNull
   private final DataSource dataSource;
 
+  private final Counter errorAddingToDatabase;
+
   public int addDataToWebpageTable(String url, String data){
     String insert = "INSERT INTO webpage (url, time_indexed_at, raw_data) VALUES (?,?,?)"; //id will auto-increment
     try(Connection connection = dataSource.getConnection()) {
@@ -32,6 +35,7 @@ public class CrawlerDao {
       }
     } catch (SQLException e) {
       log.info("Error:" + e);
+      errorAddingToDatabase.increment();
     }
 
     return 0;
@@ -48,6 +52,7 @@ public class CrawlerDao {
       }
     } catch (SQLException e) {
       log.info("Error: " + e);
+      errorAddingToDatabase.increment();
     }
     return 0;
   }

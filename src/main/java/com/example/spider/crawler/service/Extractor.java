@@ -1,6 +1,8 @@
 package com.example.spider.crawler.service;
 
 import com.example.spider.crawler.domain.Webpage;
+import io.micrometer.core.instrument.Counter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,7 +13,12 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class Extractor {
+
+  private final Counter errorCrawlingWebpage;
+  private final Counter emptyImageFoundInWebpage;
+  private final Counter emptyDataFoundInWebpage;
 
   public Webpage crawl(String url) { //collect to a list and return
 
@@ -22,6 +29,10 @@ public class Extractor {
 
       Element image = doc.select("img[src~=(?i)\\.(png|jpe?g|gif)]").first();
       String imageUrl = image.absUrl("src");
+
+      if(imageUrl.isEmpty()) {
+        emptyImageFoundInWebpage.increment();
+      }
 
       String title = doc.title();
 
@@ -46,6 +57,10 @@ public class Extractor {
         data.append(t.text());
       }
 
+      if(data.toString().isEmpty()) {
+        emptyDataFoundInWebpage.increment();
+      }
+
       response
         .searchedUrl(url)
         .data(data.toString())
@@ -54,7 +69,7 @@ public class Extractor {
 
     } catch (Exception ex) {
       log.info(ex.getMessage());
-
+      errorCrawlingWebpage.increment();
     }
 
     return response.build();

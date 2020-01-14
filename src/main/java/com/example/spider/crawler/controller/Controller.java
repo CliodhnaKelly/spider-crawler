@@ -3,6 +3,7 @@ package com.example.spider.crawler.controller;
 import com.example.spider.crawler.dao.CrawlerDao;
 import com.example.spider.crawler.domain.Webpage;
 import com.example.spider.crawler.service.Extractor;
+import io.micrometer.core.instrument.Counter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,9 @@ public class Controller {
   private final Extractor extractor;
 
   private final CrawlerDao crawlerDao;
+
+  private final Counter numberOfPagesCrawled;
+
 
   @RequestMapping("/")
   public String hello(){
@@ -47,6 +51,8 @@ public class Controller {
     } else if(adInserted == 0) {
       return ResponseEntity.ok("Could not retrieve image for ad.");
     }
+
+    numberOfPagesCrawled.increment();
 
     return ResponseEntity.ok()
       .headers(headers)
